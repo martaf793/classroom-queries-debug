@@ -7,15 +7,16 @@ class CoursesController < ApplicationController
 
   def show
     the_id = params.fetch("path_id")
-    @course = Course.where({:id => the_id }).at(0)
+    @course = Course.where({:id => the_id })
+    @the_course=@course.at(0)
 
     render({ :template => "courses/show" })
   end
 
   def create
     @course = Course.new
-    @course.title = params.fetch("query_title")
-    @course.term_offered = params.fetch("query_term_")
+    @course.title = params.fetch("q_title")
+    @course.term_offered = params.fetch("query_term")
     @course.department_id = params.fetch("query_department_id")
 
     if @course.valid?

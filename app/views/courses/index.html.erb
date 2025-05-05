@@ -10,7 +10,7 @@
       Title
     </label>
 
-    <input type="text" id="title_b" name="q_title">
+    <input type="text" id="title_box" name="q_title">
   </div>
 
   <div>
@@ -27,7 +27,9 @@
     </label>
 
     <select id="department_id_box" name="query_department_id">
-      <% Department.order({ :name => :asc }).each do |a_department| %>
+      <% matching_d=Department.order({ :name => :asc })%>
+      <%the_dept=matching_d.at(0)%>
+      <%the_dept.each do |a_department| %>
         <option value="<%= a_department.id %>">
           <%= a_department.name %>
         </option>
@@ -64,7 +66,7 @@
     </th>
   </tr>
 
-  <% @course.each do |course| %>
+  <% @the_course.each do |course| %>
     <tr>
       <td>
         <%= course.id %>
