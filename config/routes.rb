@@ -42,6 +42,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # post("/insert_enrollment", { :controller => "enrollments", :action => "create" }) DOES NOT APPEAR IN TARGET
+  post("/insert_enrollment", { :controller => "enrollments", :action => "create" }) #DOES NOT APPEAR IN TARGET
 
 end

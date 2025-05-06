@@ -28,8 +28,7 @@
 
     <select id="department_id_box" name="query_department_id">
       <% matching_d=Department.order({ :name => :asc })%>
-      <%the_dept=matching_d.at(0)%>
-      <%the_dept.each do |a_department| %>
+      <%matching_d.each do |a_department| %>
         <option value="<%= a_department.id %>">
           <%= a_department.name %>
         </option>
@@ -65,8 +64,8 @@
     <th>
     </th>
   </tr>
-
-  <% @the_course.each do |course| %>
+  <% course=Course.all %>
+  <% course.each do |course| %>
     <tr>
       <td>
         <%= course.id %>
@@ -81,12 +80,13 @@
       </td>
 
       <td>
-        <% department = department.where({ :id => course.department_id }).at(0) %>
+        <% matching_department = Department.where({ :id => course.department_id })%>
+        <% department=matching_department.at(0) %>
         <a href="/departments/<%= department.id %>"><%= department.name %></a>
       </td>
 
       <td>
-        <a href="/courses/<%= @course.id %>">
+        <a href="/courses/<%= course.id %>">
           Show details
         </a>
       </td>
